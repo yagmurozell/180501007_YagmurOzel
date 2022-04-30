@@ -18,6 +18,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class KundenFrame extends Konnektor {
 
@@ -36,6 +39,13 @@ public class KundenFrame extends Konnektor {
 	private JTextField tel_txt;
 	private JTextField id_txt;
 	private JTextField num_txt;
+	private JLabel lblKunden;
+	private JLabel lblVor;
+	private JLabel lblNach;
+	private JLabel lblEmail;
+	private JLabel lblTel;
+	private JLabel lblid;
+	private JLabel lblrez;
 
 	/**
 	 * Launch the application.
@@ -60,8 +70,9 @@ public class KundenFrame extends Konnektor {
 		 
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 788, 496);
+		setBounds(100, 100, 903, 431);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(224, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -69,7 +80,8 @@ public class KundenFrame extends Konnektor {
 		
 		
 		JButton editButton = new JButton("Edit");
-		editButton.setBounds(185, 308, 89, 23);
+		editButton.setBackground(new Color(204, 255, 255));
+		editButton.setBounds(188, 327, 89, 23);
  		contentPane.add(editButton);
  		
  		
@@ -129,7 +141,7 @@ public class KundenFrame extends Konnektor {
 				
 			}
 		});
-		scrollPane.setBounds(79, 52, 380, 223);
+		scrollPane.setBounds(31, 51, 576, 252);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -139,6 +151,7 @@ public class KundenFrame extends Konnektor {
 		scrollPane.setViewportView(table);
 		
 		JButton addButton = new JButton("Add");
+		addButton.setBackground(new Color(204, 255, 255));
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String user_TC = tc_txt.getText();
@@ -174,12 +187,13 @@ public class KundenFrame extends Konnektor {
 				
 			}
 		});
-		addButton.setBounds(86, 308, 89, 23);
+		addButton.setBounds(89, 327, 89, 23);
 		contentPane.add(addButton);
 		
 		
 		
 		JButton deleteButton = new JButton("Delete");
+		deleteButton.setBackground(new Color(204, 255, 255));
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -208,10 +222,11 @@ public class KundenFrame extends Konnektor {
 				}
 			}
 		});
-		deleteButton.setBounds(284, 308, 89, 23);
+		deleteButton.setBounds(287, 327, 89, 23);
 		contentPane.add(deleteButton);
 		
 		JButton updateButton = new JButton("Update");
+		updateButton.setBackground(new Color(204, 255, 255));
 		updateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 a.setRowCount(0);
@@ -239,42 +254,84 @@ public class KundenFrame extends Konnektor {
 		});
 		
 		
-		updateButton.setBounds(383, 308, 89, 23);
+		updateButton.setBounds(386, 327, 89, 23);
 		contentPane.add(updateButton);
 		
 		tc_txt = new JTextField();
-		tc_txt.setBounds(551, 66, 86, 20);
+		tc_txt.setBounds(775, 68, 86, 20);
 		contentPane.add(tc_txt);
 		tc_txt.setColumns(10);
 		
 		vorn_txt = new JTextField();
 		vorn_txt.setColumns(10);
-		vorn_txt.setBounds(551, 97, 86, 20);
+		vorn_txt.setBounds(775, 99, 86, 20);
 		contentPane.add(vorn_txt);
 		
 		nach_txt = new JTextField();
 		nach_txt.setColumns(10);
-		nach_txt.setBounds(551, 128, 86, 20);
+		nach_txt.setBounds(775, 130, 86, 20);
 		contentPane.add(nach_txt);
 		
 		email_txt = new JTextField();
 		email_txt.setColumns(10);
-		email_txt.setBounds(551, 159, 86, 20);
+		email_txt.setBounds(775, 160, 86, 20);
 		contentPane.add(email_txt);
 		
 		tel_txt = new JTextField();
 		tel_txt.setColumns(10);
-		tel_txt.setBounds(551, 190, 86, 20);
+		tel_txt.setBounds(775, 192, 86, 20);
 		contentPane.add(tel_txt);
 		
 		id_txt = new JTextField();
 		id_txt.setColumns(10);
-		id_txt.setBounds(551, 221, 86, 20);
+		id_txt.setBounds(775, 223, 86, 20);
 		contentPane.add(id_txt);
 		
 		num_txt = new JTextField();
 		num_txt.setColumns(10);
-		num_txt.setBounds(551, 252, 86, 20);
+		num_txt.setBounds(775, 254, 86, 20);
 		contentPane.add(num_txt);
+		
+		lblKunden = new JLabel("Kunden TC :");
+		lblKunden.setForeground(new Color(0, 153, 204));
+		lblKunden.setFont(new Font("Arial", Font.BOLD, 13));
+		lblKunden.setBounds(658, 68, 89, 20);
+		contentPane.add(lblKunden);
+		
+		lblVor = new JLabel("Vorname :");
+		lblVor.setForeground(new Color(0, 153, 204));
+		lblVor.setFont(new Font("Arial", Font.BOLD, 13));
+		lblVor.setBounds(658, 102, 97, 14);
+		contentPane.add(lblVor);
+		
+		lblNach = new JLabel("Nachname :");
+		lblNach.setForeground(new Color(0, 153, 204));
+		lblNach.setFont(new Font("Arial", Font.BOLD, 13));
+		lblNach.setBounds(658, 132, 89, 14);
+		contentPane.add(lblNach);
+		
+		lblEmail = new JLabel("E-mail :");
+		lblEmail.setForeground(new Color(0, 153, 204));
+		lblEmail.setFont(new Font("Arial", Font.BOLD, 13));
+		lblEmail.setBounds(658, 164, 89, 14);
+		contentPane.add(lblEmail);
+		
+		lblTel = new JLabel("Telefonnummer :");
+		lblTel.setForeground(new Color(0, 153, 204));
+		lblTel.setFont(new Font("Arial", Font.BOLD, 13));
+		lblTel.setBounds(656, 195, 120, 14);
+		contentPane.add(lblTel);
+		
+		lblid = new JLabel("Produkt id :");
+		lblid.setForeground(new Color(0, 153, 204));
+		lblid.setFont(new Font("Arial", Font.BOLD, 13));
+		lblid.setBounds(658, 226, 97, 14);
+		contentPane.add(lblid);
+		
+		lblrez = new JLabel("Reservations Nr. :");
+		lblrez.setForeground(new Color(0, 153, 204));
+		lblrez.setFont(new Font("Arial", Font.BOLD, 13));
+		lblrez.setBounds(658, 257, 118, 14);
+		contentPane.add(lblrez);
 	}
 }

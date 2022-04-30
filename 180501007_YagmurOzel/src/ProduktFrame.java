@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Font;
 
 public class ProduktFrame extends Konnektor {
 	
@@ -23,6 +24,7 @@ public class ProduktFrame extends Konnektor {
 	Object[] columns = {"Produkt_id", "Name", "Kosten"};
 	Object[] rows = new Object [3];
 	private JTextField kosten_txt;
+	private JLabel lblNewLabel;
 	
 
 	/**
@@ -47,18 +49,20 @@ public class ProduktFrame extends Konnektor {
 	public ProduktFrame() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 634, 501);
+		setBounds(100, 100, 735, 428);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(224, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(22, 28, 396, 257);
+		scrollPane.setBounds(47, 43, 396, 257);
 		contentPane.add(scrollPane);
 		
 		JButton editButton = new JButton("Edit");
-		editButton.setBounds(256, 350, 89, 23);
+		editButton.setBackground(new Color(204, 255, 255));
+		editButton.setBounds(258, 328, 89, 23);
 		contentPane.add(editButton);
 		
 		editButton.addMouseListener(new MouseAdapter() {
@@ -100,7 +104,8 @@ public class ProduktFrame extends Konnektor {
 		});
 		
 		
-		JButton btnNewButton = new JButton("Produkt");
+		JButton btnNewButton = new JButton("Update");
+		btnNewButton.setBackground(new Color(204, 255, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			 y.setRowCount(0);
@@ -124,7 +129,7 @@ public class ProduktFrame extends Konnektor {
 	
 			}
 		});
-		btnNewButton.setBounds(111, 337, 89, 23);
+		btnNewButton.setBounds(128, 328, 89, 23);
 		contentPane.add(btnNewButton);
 		
 	
@@ -140,9 +145,15 @@ public class ProduktFrame extends Konnektor {
 
 		
 		kosten_txt = new JTextField();
-		kosten_txt.setBounds(491, 94, 86, 20);
+		kosten_txt.setBounds(602, 120, 86, 20);
 		contentPane.add(kosten_txt);
 		kosten_txt.setColumns(10);
+		
+		lblNewLabel = new JLabel("Kosten :");
+		lblNewLabel.setForeground(new Color(0, 153, 204));
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 13));
+		lblNewLabel.setBounds(528, 123, 79, 14);
+		contentPane.add(lblNewLabel);
 	
 		//contentPane.add(table);
 		
