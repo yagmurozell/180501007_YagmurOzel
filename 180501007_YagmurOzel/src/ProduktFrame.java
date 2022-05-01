@@ -60,12 +60,12 @@ public class ProduktFrame extends Konnektor {
 		scrollPane.setBounds(47, 43, 396, 257);
 		contentPane.add(scrollPane);
 		
-		JButton editButton = new JButton("Edit");
+		JButton editButton = new JButton("Bearbeiten");
 		editButton.setBackground(new Color(204, 255, 255));
 		editButton.setBounds(258, 328, 89, 23);
 		contentPane.add(editButton);
 		
-		editButton.addMouseListener(new MouseAdapter() {
+		scrollPane.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
@@ -84,9 +84,9 @@ public class ProduktFrame extends Konnektor {
 	    	                         String edit = "UPDATE produkt SET Kosten = '"+kosten_txt.getText()+"' WHERE Produkt_id = '"+produkt_id+"'";
 	    	                         int x = stmt.executeUpdate(edit);
 	    	                         if (x > 0)
-	    	                             JOptionPane.showMessageDialog(editButton,"Successfully Edited. Please use UPDATE BUTTON!");
+	    	                             JOptionPane.showMessageDialog(editButton,"Erfolgreich bearbeitet. Bitte AKTUALISIEREN-BUTTON verwenden!");
 	    	                         else
-	    	                             JOptionPane.showMessageDialog(editButton,"Edit Failed");
+	    	                             JOptionPane.showMessageDialog(editButton,"Bearbeitung fehlgeschlagen");
 
 	    	                        
 
@@ -104,7 +104,7 @@ public class ProduktFrame extends Konnektor {
 		});
 		
 		
-		JButton btnNewButton = new JButton("Update");
+		JButton btnNewButton = new JButton("Aktualisieren");
 		btnNewButton.setBackground(new Color(204, 255, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

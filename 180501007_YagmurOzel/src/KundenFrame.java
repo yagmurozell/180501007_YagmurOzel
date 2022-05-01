@@ -79,7 +79,7 @@ public class KundenFrame extends Konnektor {
 		
 		
 		
-		JButton editButton = new JButton("Edit");
+		JButton editButton = new JButton("Bearbeiten");
 		editButton.setBackground(new Color(204, 255, 255));
 		editButton.setBounds(188, 327, 89, 23);
  		contentPane.add(editButton);
@@ -121,9 +121,9 @@ public class KundenFrame extends Konnektor {
 	    	                         		+ " WHERE Kunden_TC = '"+user_TC+"'";
 	    	                         int x = stmt.executeUpdate(edit);
 	    	                         if (x > 0)
-	    	                             JOptionPane.showMessageDialog(editButton,"Successfully Edited. Please use UPDATE BUTTON!");
+	    	                             JOptionPane.showMessageDialog(editButton,"Erfolgreich bearbeitet. Bitte AKTUALISIEREN-BUTTON verwenden!");
 	    	                         else
-	    	                             JOptionPane.showMessageDialog(editButton,"Edit Failed");
+	    	                             JOptionPane.showMessageDialog(editButton,"Bearbeitung fehlgeschlagen");
 
 	    	                        
 
@@ -150,7 +150,7 @@ public class KundenFrame extends Konnektor {
 		table.setModel(a);
 		scrollPane.setViewportView(table);
 		
-		JButton addButton = new JButton("Add");
+		JButton addButton = new JButton("Hinzuf\u00FCgen");
 		addButton.setBackground(new Color(204, 255, 255));
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -169,9 +169,9 @@ public class KundenFrame extends Konnektor {
 							+ "('"+user_TC+"', '"+vorname+"','"+nachname+"','"+email+"','"+tel+"','"+produkt_id+"','"+rez_num+"')";
 					int x = stmt.executeUpdate(insert);
 					if (x > 0)
-						JOptionPane.showMessageDialog(addButton,"Successfully Inserted. Please use UPDATE BUTTON!");
+						JOptionPane.showMessageDialog(addButton,"Erfolgreich eingefügt. Bitte AKTUALISIEREN-BUTTON verwenden!");
 		            else
-		            	JOptionPane.showMessageDialog(addButton,"Insert Failed");
+		            	JOptionPane.showMessageDialog(addButton,"Einfügen fehlgeschlagen");
 
 
 					
@@ -192,7 +192,7 @@ public class KundenFrame extends Konnektor {
 		
 		
 		
-		JButton deleteButton = new JButton("Delete");
+		JButton deleteButton = new JButton("L\u00F6schen");
 		deleteButton.setBackground(new Color(204, 255, 255));
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -212,9 +212,9 @@ public class KundenFrame extends Konnektor {
 					String delete = "DELETE FROM kunden WHERE Kunden_TC = '"+user_TC+"'";
 					int x = stmt.executeUpdate(delete);
 					if (x > 0)
-						JOptionPane.showMessageDialog(deleteButton,"Successfully Deleted. Please use UPDATE BUTTON!");
+						JOptionPane.showMessageDialog(deleteButton,"Erfolgreich gelöscht. Bitte AKTUALISIEREN-BUTTON verwenden!");
 		            else
-		            	JOptionPane.showMessageDialog(deleteButton,"Deletion Failed");
+		            	JOptionPane.showMessageDialog(deleteButton,"Löschen fehlgeschlagen");
 					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -225,7 +225,7 @@ public class KundenFrame extends Konnektor {
 		deleteButton.setBounds(287, 327, 89, 23);
 		contentPane.add(deleteButton);
 		
-		JButton updateButton = new JButton("Update");
+		JButton updateButton = new JButton("Aktualisieren");
 		updateButton.setBackground(new Color(204, 255, 255));
 		updateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -254,7 +254,7 @@ public class KundenFrame extends Konnektor {
 		});
 		
 		
-		updateButton.setBounds(386, 327, 89, 23);
+		updateButton.setBounds(386, 327, 102, 23);
 		contentPane.add(updateButton);
 		
 		tc_txt = new JTextField();

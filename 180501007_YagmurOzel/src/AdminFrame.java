@@ -40,6 +40,7 @@ public class AdminFrame extends Konnektor {
 		
 		ProduktFrame pf = new ProduktFrame();
 	    KundenFrame kf = new KundenFrame();
+	    KDienstMenuFrame df = new KDienstMenuFrame();
 	  //ReinigungFrame rf = new ReinigungFrame();
 	    
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,16 +51,16 @@ public class AdminFrame extends Konnektor {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton kundenButton = new JButton("KUNDEN");
+		JButton kundenButton = new JButton("KUNDENDIENST");
 		kundenButton.setBackground(new Color(204, 255, 255));
 		kundenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				kf.setTitle("Welcome");
-                kf.setVisible(true);
-                JOptionPane.showMessageDialog(kundenButton, "You have successfully logged in");
+				df.setTitle("Welcome");
+                df.setVisible(true);
+                JOptionPane.showMessageDialog(kundenButton, "Sie haben sich erfolgreich angemeldet");
 			}
 		});
-		kundenButton.setBounds(86, 260, 89, 23);
+		kundenButton.setBounds(86, 260, 140, 23);
 		contentPane.add(kundenButton);
 		
 		JButton produktButton = new JButton("PRODUKT");
@@ -68,7 +69,7 @@ public class AdminFrame extends Konnektor {
 			public void actionPerformed(ActionEvent e) {
 				pf.setTitle("Welcome");
                 pf.setVisible(true);
-                JOptionPane.showMessageDialog(produktButton, "You have successfully logged in");
+                JOptionPane.showMessageDialog(produktButton, "Sie haben sich erfolgreich angemeldet");
 			}
 		});
 		produktButton.setBounds(391, 260, 118, 23);

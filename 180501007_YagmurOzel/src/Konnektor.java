@@ -17,7 +17,7 @@ public class Konnektor extends JFrame {
 		
 		try {
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/reinigung","root", "12341234");
-			System.out.println("Connection succesfull");
+			System.out.println("Verbindung erfolgreich");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
