@@ -40,9 +40,10 @@ public class KDienstMenuFrame extends JFrame {
 	public KDienstMenuFrame() {
 		
 		 KundenFrame kf = new KundenFrame();
+		 ResFrame rf =new ResFrame();
 		 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 427, 604);
+		setBounds(100, 100, 740, 351);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(224, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -52,7 +53,7 @@ public class KDienstMenuFrame extends JFrame {
 		JButton btnKundenFrame = new JButton("KUNDEN INFO");
 		btnKundenFrame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				kf.setTitle("Welcome");
+				kf.setTitle("Willkommen");
                 kf.setVisible(true);
                 JOptionPane.showMessageDialog(btnKundenFrame, "Sie haben sich erfolgreich angemeldet");
 			}
@@ -63,13 +64,20 @@ public class KDienstMenuFrame extends JFrame {
 		
 		JButton btnNewButton_1 = new JButton("RESERVIERUNG");
 		btnNewButton_1.setBackground(new Color(204, 255, 255));
-		btnNewButton_1.setBounds(147, 493, 133, 23);
+		btnNewButton_1.setBounds(462, 246, 133, 23);
 		contentPane.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rf.setTitle("Willkommen");
+                rf.setVisible(true);
+                JOptionPane.showMessageDialog(btnKundenFrame, "Sie haben sich erfolgreich angemeldet");
+			}
+		});
 		
 		JLabel lblRezicon = new JLabel("New label");
 		Image img = new ImageIcon (this.getClass().getResource ("/calendar.png")).getImage();
 		lblRezicon.setIcon(new ImageIcon (img));
-		lblRezicon.setBounds(116, 307, 175, 175);
+		lblRezicon.setBounds(433, 53, 175, 175);
 		contentPane.add(lblRezicon);
 		
 		JLabel lblKundenicon = new JLabel("New label");

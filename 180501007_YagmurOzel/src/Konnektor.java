@@ -61,6 +61,18 @@ public class Konnektor extends JFrame {
 		}
 		return myRs;		
 	}
+	
+	static ResultSet stat_res(){
+		ResultSet myRs = null;
+		try {
+			myStat = (Statement) myConn.createStatement ();
+			myRs = myStat.executeQuery("SELECT * FROM reservation");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return myRs;		
+	}
 
 	public static void main(String[] args) {
 

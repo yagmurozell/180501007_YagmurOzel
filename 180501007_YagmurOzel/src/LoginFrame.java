@@ -109,8 +109,8 @@ public class LoginFrame extends Konnektor {
 				
 			}
 		});
-		btnNewButton.setBounds(436, 11, 89, 23);
-		contentPane.add(btnNewButton);
+		btnNewButton.setBounds(422, 11, 103, 23);
+		contentPane.add(btnNewButton); 
 		
 		
 		JButton btnNewButton_1 = new JButton("Einloggen");
@@ -207,7 +207,7 @@ public class LoginFrame extends Konnektor {
 		lblNewLabel_1.setForeground(new Color(0, 153, 204));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 33));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(137, 55, 316, 75);
+		lblNewLabel_1.setBounds(172, 57, 316, 75);
 		contentPane.add(lblNewLabel_1);
 		
 

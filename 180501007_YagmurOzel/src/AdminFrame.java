@@ -55,7 +55,7 @@ public class AdminFrame extends Konnektor {
 		kundenButton.setBackground(new Color(204, 255, 255));
 		kundenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				df.setTitle("Welcome");
+				df.setTitle("Willkommen");
                 df.setVisible(true);
                 JOptionPane.showMessageDialog(kundenButton, "Sie haben sich erfolgreich angemeldet");
 			}
@@ -67,7 +67,7 @@ public class AdminFrame extends Konnektor {
 		produktButton.setBackground(new Color(204, 255, 255));
 		produktButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pf.setTitle("Welcome");
+				pf.setTitle("Willkommen");
                 pf.setVisible(true);
                 JOptionPane.showMessageDialog(produktButton, "Sie haben sich erfolgreich angemeldet");
 			}
