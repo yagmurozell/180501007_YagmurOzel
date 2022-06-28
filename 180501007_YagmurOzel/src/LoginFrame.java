@@ -29,11 +29,12 @@ public class LoginFrame extends Konnektor {
 
 	private JPanel contentPane;
 	private JTextField txtNichtVerbunden;
-	private JTextField userField;
+	static JTextField userField;
 	Konnektor login = new Konnektor();
-	private JPasswordField passwordField_1;
+	static JPasswordField passwordField_1;
 	private JLabel loginicon_1;
 	private JLabel lblNewLabel_1;
+	static JButton btnNewButton;
 	
 	
 
@@ -120,71 +121,8 @@ public class LoginFrame extends Konnektor {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				
-				String username = userField.getText();
-				String password = passwordField_1.getText();
-				try {
-					PreparedStatement st = (PreparedStatement) myConn
-							.prepareStatement("SELECT username, password FROM user WHERE username=? AND password=?");
-					
-					st.setString(1, username);
-					st.setString(2, password);
-					
-					ResultSet rs = st.executeQuery();
-                    if (rs.next()) {
-                        dispose();
-                        
-                        ProduktFrame pf = new ProduktFrame();
-                	    KundenFrame kf = new KundenFrame();
-                	    AdminFrame af = new AdminFrame();
-                	    KDienstMenuFrame df = new KDienstMenuFrame();
-                	    //ReinigungFrame rf = new ReinigungFrame();
-                      
-                	    switch (username) {
-					case "admin": {
-						af.setTitle("Willkommen");
-                        af.setVisible(true);
-                        JOptionPane.showMessageDialog(btnNewButton, "Sie haben sich erfolgreich mit den Referenzen ADMIN angemeldet");
-						break;
-					
-					}
-					case "kundendienst":{
-						df.setTitle("Willkommen");
-                        df.setVisible(true);
-                        JOptionPane.showMessageDialog(btnNewButton, "Sie haben sich erfolgreich mit den Referenzen KUNDENDIENST angemeldet");
-                        break;
-					}
-					case "buchhalter" :{
-						pf.setTitle("Willkommen");
-                        pf.setVisible(true);
-                        JOptionPane.showMessageDialog(btnNewButton, "Sie haben sich erfolgreich mit den Referenzen BUCHHALTER angemeldet");
-                        break;
-						
-					}
-					case "reinigung" :{
-						//rf.setTitle("Welcome");
-                       // rf.setVisible(true);
-                       // JOptionPane.showMessageDialog(btnNewButton, "You have successfully logged in");
-                        break;
-						
-					}
-
-					default:
-						throw new IllegalArgumentException("Unexpected value: " + username);
-					}
-                        
-                        
-                    } else {
-                        JOptionPane.showMessageDialog(btnNewButton, "Falscher Benutzername / Passwort");
-					
-					
-                    }
-					
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				Konnektor.stat_loginUser();
+	
 				
 			}
 		});

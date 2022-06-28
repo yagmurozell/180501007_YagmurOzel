@@ -41,7 +41,7 @@ public class AdminFrame extends Konnektor {
 		ProduktFrame pf = new ProduktFrame();
 	    KundenFrame kf = new KundenFrame();
 	    KDienstMenuFrame df = new KDienstMenuFrame();
-	  //ReinigungFrame rf = new ReinigungFrame();
+	  ReinigungFrame rf = new ReinigungFrame();
 	    
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 905, 407);
@@ -79,9 +79,9 @@ public class AdminFrame extends Konnektor {
 		btnPuffhouse.setBackground(new Color(204, 255, 255));
 		btnPuffhouse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//rf.setTitle("Welcome");
-               // rf.setVisible(true);
-               // JOptionPane.showMessageDialog(produktButton, "You have successfully logged in");
+				rf.setTitle("Welcome");
+                rf.setVisible(true);
+               JOptionPane.showMessageDialog(produktButton, "Sie haben sich erfolgreich angemeldet");
 			
 			}
 		});

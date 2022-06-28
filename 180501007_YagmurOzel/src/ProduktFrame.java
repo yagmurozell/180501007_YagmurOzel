@@ -17,14 +17,15 @@ public class ProduktFrame extends Konnektor {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTable table;
+	static JTable table;
 	
-	DefaultTableModel y = new DefaultTableModel();
+	static DefaultTableModel y = new DefaultTableModel();
 	
-	Object[] columns = {"Produkt_id", "Name", "Kosten"};
-	Object[] rows = new Object [3];
-	private JTextField kosten_txt;
+	static Object[] columns = {"Produkt_id", "Name", "Kosten"};
+	static Object[] rows = new Object [3];
+	static JTextField kosten_txt;
 	private JLabel lblNewLabel;
+	static JButton editButton;
 	
 
 	/**
@@ -48,6 +49,7 @@ public class ProduktFrame extends Konnektor {
 	 */
 	public ProduktFrame() {
 		
+				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 735, 428);
 		contentPane = new JPanel();
@@ -78,23 +80,8 @@ public class ProduktFrame extends Konnektor {
 	                	
 	    	     		editButton.addActionListener(new ActionListener() {
 	    	     			public void actionPerformed(ActionEvent e) {	
-	    	     				Statement stmt;
-	    	                     try {
-	    	                         stmt = myConn.createStatement();
-	    	                         String edit = "UPDATE produkt SET Kosten = '"+kosten_txt.getText()+"' WHERE Produkt_id = '"+produkt_id+"'";
-	    	                         int x = stmt.executeUpdate(edit);
-	    	                         if (x > 0)
-	    	                             JOptionPane.showMessageDialog(editButton,"Erfolgreich bearbeitet. Bitte AKTUALISIEREN-BUTTON verwenden!");
-	    	                         else
-	    	                             JOptionPane.showMessageDialog(editButton,"Bearbeitung fehlgeschlagen");
 
-	    	                        
-
-	    	                     } catch (SQLException e1) {
-	    	                         // TODO Auto-generated catch block
-	    	                         e1.printStackTrace();
-	    	                     }
-	    	     				
+	    	     				Konnektor.stat_produkt_edit();
 	    	     				
 	    	     			}
 	    	     		});
@@ -109,23 +96,9 @@ public class ProduktFrame extends Konnektor {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			 y.setRowCount(0);
-			 ResultSet myRs = Konnektor.stat_produkt();
-			 
-			 try {
-                 while(myRs.next()) {
-                     rows[0] = myRs.getString("Produkt_id");
-                     rows[1] = myRs.getString("Name");
-                     rows[2] = myRs.getString("Kosten");
-                    
-                     y.addRow(rows);
-                 }
-             } catch (SQLException e1) {
-                 e1.printStackTrace();
-             }
 
-             table.setModel(y);
-				 
-				
+             Konnektor.stat_produkt_update();
+             table.setModel(y);	
 	
 			}
 		});

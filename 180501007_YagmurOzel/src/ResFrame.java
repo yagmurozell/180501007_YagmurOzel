@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Iterator;
 
+import javax.swing.ComboBoxEditor;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,28 +22,30 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JComboBox;
 
 public class ResFrame extends Konnektor {
 
 	private JPanel contentPane;
-	private JTable table;
+	static JTable table;
 	
-   DefaultTableModel b = new DefaultTableModel();
+   static DefaultTableModel b = new DefaultTableModel();
   
 	
-	Object[] columns = { "Reservations_Nr", "Kunden_TC", "Date","Produkt"};
-	Object[] rows = new Object [4];
-	private JTextField tc_txt;
-	private JTextField res_txt;
-	private JTextField date_txt;
-	private JTextField produkt_txt;
+	static Object[] columns = { "Reservations_Nr", "Kunden_TC", "Date","Produkt","Situation"};
+	static Object[] rows = new Object [5];
+	static JTextField tc_txt;
+	static JTextField res_txt;
+	static JTextField date_txt;
 
 	private JLabel lblKunden;
 	private JLabel lblRes;
 	private JLabel lblDate;
 	private JLabel lblProdukt;
-	private JTextField textFieldTC;
-
+	static JTextField textFieldTC;
+	static JButton deleteButton;
+	static JButton addButton;
+	static JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -63,8 +67,9 @@ public class ResFrame extends Konnektor {
 	 * Create the frame.
 	 */
 	public ResFrame() {
-		 
+		
 
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 994, 472);
 		contentPane = new JPanel();
@@ -73,12 +78,32 @@ public class ResFrame extends Konnektor {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JComboBox comboBox = new JComboBox();
+		comboBox.addItem("Matratzen");
+		comboBox.addItem("Teppich");
+		comboBox.addItem("Sofa");
+		comboBox.addItem("Gardinen");
+		comboBox.addItem("Hausreinigung");
+		
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+			}
+		});
+		comboBox.setBounds(777, 161, 84, 22);
+		contentPane.add(comboBox);
+	
+		
 		
 		
 		JButton editButton = new JButton("Bearbeiten");
 		editButton.setBackground(new Color(204, 255, 255));
 		editButton.setBounds(188, 327, 89, 23);
  		contentPane.add(editButton);
+ 		
  		
  		
  		JScrollPane scrollPane = new JScrollPane();
@@ -98,18 +123,16 @@ public class ResFrame extends Konnektor {
 	                	tc_txt.setText(user_TC);
 	                	res_txt.setText(res_num);
 	                	date_txt.setText(date);
-	                	produkt_txt.setText(produkt);
-	              
+	                	comboBox.setSelectedItem(produkt);
 	                	
 	                	 
 	    	     		editButton.addActionListener(new ActionListener() {
 	    	     			public void actionPerformed(ActionEvent e) {
-	    	     				
 	    	     				Statement stmt;
 	    	                     try {
 	    	                         stmt = myConn.createStatement();
-	    	                         String edit = "UPDATE reservation SET Date = '"+date_txt.getText()+"' , Produkt = '"+produkt_txt.getText()+"', Reservations_Nr = '"+res_num+"'"
-	    	                         		+ " WHERE Kunden_TC = '"+user_TC+"'";
+	    	                         String edit = "UPDATE reservation SET Date = '"+date_txt.getText()+"' , Produkt = '"+comboBox.getEditor().getItem()+"', Kunden_TC = '"+user_TC+"'"
+	    	                         		+ " WHERE Reservations_Nr = '"+res_num+"'";
 	    	                         int x = stmt.executeUpdate(edit);
 	    	                         if (x > 0)
 	    	                             JOptionPane.showMessageDialog(editButton,"Erfolgreich bearbeitet. Bitte AKTUALISIEREN-BUTTON verwenden!");
@@ -144,11 +167,11 @@ public class ResFrame extends Konnektor {
 		JButton addButton = new JButton("Hinzuf\u00FCgen");
 		addButton.setBackground(new Color(204, 255, 255));
 		addButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {	
 				String user_TC = tc_txt.getText();
 				String res_num = res_txt.getText();
 				String date = date_txt.getText();
-				String produkt = produkt_txt.getText();
+				String produkt = (String) comboBox.getEditor().getItem();
 
 				Statement stmt;
 				try {
@@ -167,11 +190,7 @@ public class ResFrame extends Konnektor {
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
-				
-				
-				
-				
+				}		
 				
 				
 			}
@@ -186,27 +205,7 @@ public class ResFrame extends Konnektor {
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String user_TC = tc_txt.getText();
-				String res_num = res_txt.getText();
-				String date = date_txt.getText();
-				String produkt = produkt_txt.getText();
-
-				conn();
-				Statement stmt;
-				try {
-					stmt = myConn.createStatement();
-					
-					String delete = "DELETE FROM reservation WHERE Kunden_TC = '"+user_TC+"'";
-					int x = stmt.executeUpdate(delete);
-					if (x > 0)
-						JOptionPane.showMessageDialog(deleteButton,"Erfolgreich gelöscht. Bitte AKTUALISIEREN-BUTTON verwenden!");
-		            else
-		            	JOptionPane.showMessageDialog(deleteButton,"Löschen fehlgeschlagen");
-					
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+              Konnektor.stat_res_delete();
 			}
 		});
 		deleteButton.setBounds(287, 327, 89, 23);
@@ -217,21 +216,7 @@ public class ResFrame extends Konnektor {
 		updateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 b.setRowCount(0);
-				 ResultSet myRs = Konnektor.stat_res();
-				 try {
-	                 while(myRs.next()) {
-	                     rows[0] = myRs.getString("Reservations_Nr");    
-	                     rows[1] = myRs.getString("Kunden_TC");
-	                     rows[2] = myRs.getString("Date");
-	                     rows[3] = myRs.getString("Produkt");
-
-	                     b.addRow(rows);
-	                 }
-
-	                 
-	             } catch (SQLException e1) {
-	                 e1.printStackTrace();
-	             }
+                 Konnektor.stat_res_update();
 
 	             table.setModel(b);
 			
@@ -256,11 +241,6 @@ public class ResFrame extends Konnektor {
 		date_txt.setColumns(10);
 		date_txt.setBounds(775, 130, 86, 20);
 		contentPane.add(date_txt);
-		
-		produkt_txt = new JTextField();
-		produkt_txt.setColumns(10);
-		produkt_txt.setBounds(775, 160, 86, 20);
-		contentPane.add(produkt_txt);
 
 		lblKunden = new JLabel("Kunden TC :");
 		lblKunden.setForeground(new Color(0, 153, 204));
@@ -292,36 +272,9 @@ public class ResFrame extends Konnektor {
 			public void actionPerformed(ActionEvent e) {
 				
 				b.setRowCount(0);
-				
-				ResultSet myRs = Konnektor.stat_res();
-				
-
-				Statement stmt;
-				try {
-					stmt = myConn.createStatement();
-					
-					String quest = "SELECT * FROM reservation WHERE Kunden_TC = '"+textFieldTC.getText()+"' ";
-					
-					    stmt.executeQuery(quest);
-					    
-					    
-					    
-					    if(myRs.next()) {
-	                    rows[0] = myRs.getString("Reservations_Nr");    
-	                    rows[1] = myRs.getString("Kunden_TC");
-	                    rows[2] = myRs.getString("Date");
-	                    rows[3] = myRs.getString("Produkt");
-
-	                    b.addRow(rows);}
-
-
-					
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}			
-				
-				  table.setModel(b);
+		
+				Konnektor.stat_res_abfrage();
+				 table.setModel(b);
 					
 				
 			}
@@ -339,6 +292,8 @@ public class ResFrame extends Konnektor {
 		lblKunden_1.setFont(new Font("Arial", Font.BOLD, 13));
 		lblKunden_1.setBounds(699, 328, 89, 20);
 		contentPane.add(lblKunden_1);
-	}
+		
+	
+}
 }
 
